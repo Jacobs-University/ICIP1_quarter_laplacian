@@ -1,4 +1,3 @@
-import numpy as np
 from .utilities import *
 
 
@@ -26,23 +25,23 @@ class Smoothing(object):
         self.edges = self.kernel.shape[0] // 2  # Assumed kernel is a square matrix
         self.K1 = np.array([
             [self.kernel[0][0] * 4, self.kernel[0][1] * 2, 0],
-            [self.kernel[1][0] * 2, -1, 0],
-            [0, 0, 0]
+            [self.kernel[1][0] * 2,       -1,              0],
+            [0,                            0,              0]
         ])
         self.K2 = np.array([
-            [0, self.kernel[0][1] * 2, self.kernel[0][0] * 4],
-            [0, -1, self.kernel[1][0] * 2],
-            [0, 0, 0]
+            [0, self.kernel[0][1] * 2, self.kernel[0][2] * 4],
+            [0,         -1,            self.kernel[1][2] * 2],
+            [0,          0,                                0]
         ])
         self.K3 = np.array([
-            [0, 0, 0],
-            [0, -1, self.kernel[0][1] * 2],
-            [0, self.kernel[0][1] * 2, self.kernel[0][1] * 2]
+            [0,          0,                                0],
+            [0,         -1,            self.kernel[1][2] * 2],
+            [0, self.kernel[2][1] * 2, self.kernel[2][2] * 4]
         ])
         self.K4 = np.array([
-            [0, 0, 0],
-            [self.kernel[1][0] * 2, -1, 0],
-            [self.kernel[1][0] * 2, self.kernel[1][0] * 2, 0]
+            [0,                      0,                    0],
+            [self.kernel[1][0] * 2, -1,                    0],
+            [self.kernel[2][0] * 4, self.kernel[2][1] * 2, 0]
         ])
 
     def laplacian_filter(self, image):

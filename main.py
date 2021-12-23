@@ -1,11 +1,13 @@
+import sys
 from os import path
-from skimage import data, color, io, filters
-import matplotlib.pyplot as plt
-from scipy import ndimage
+from skimage import data
 import mahotas
 
 from imageprocessing.filters import *
 from imageprocessing.utilities import *
+
+# If image is provided then that image will be used otherwise standard camera man image will be used.
+original_img = plt.imread(sys.argv[1]) if ((__name__ == '__main__') and len(sys.argv) > 1) else data.camera()
 
 original_img_path = 'img/original.png'
 filtered_img_path = 'img/filtered.png'
@@ -15,7 +17,6 @@ filtered100_img_path = 'img/filtered_100.png'
 filtered1000_img_path = 'img/filtered_1000.png'
 
 # ########## Original Image ##########
-original_img = data.camera()
 plt.title('Original Image')
 plt.imshow(original_img).set_cmap('gray')
 plt.savefig(original_img_path)
@@ -50,9 +51,9 @@ plt.savefig(filtered_img_path)
 plt.show()
 
 # Getting the Trivial Laplacian Filter Result
-result = filters.laplace(original_img)
+result = mahotas.laplacian_2D(original_img)
 plt.title('Laplacian Filter Image')
-plt.imshow(mahotas.laplacian_2D(original_img)).set_cmap('gray')
+plt.imshow(result).set_cmap('gray')
 plt.savefig(trivial_laplace_filtered_img)
 plt.show()
 
