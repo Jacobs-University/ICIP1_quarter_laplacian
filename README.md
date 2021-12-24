@@ -34,10 +34,33 @@ K1 = [1/3, -1,  0] , K2 = [0,  -1, 1/3]   K3 = [0,  -1, 1/3] , K4 = [1/3,  -1, 0
 <!-- TO DO: After implementation -->
 
 ### Installation
-Please just run install.sh as follows to complete installation: <br/>
-$ ./install.sh
 
 NOTE: Linux based OS or MacOS required to run this shell script.
+
+1.	Clone the repository from git.
+2.	Open the command line interface (CLI) of your OS and move to the project folder <i>ICIP1_quarter_laplacian/</i> 
+      using cd command.
+3.	Run the installation script using following command
+	
+	$ ./install.sh
+          
+this script will automatically create a new directory namely <i>env_dir/</i> to create a virtual environment, activate 
+that environment and install all the required library into that.
+
+NOTE: If you get permission denied error while running this script, kindly run the command
+	
+    $ chmod 755 install.sh
+
+4.  Once the project is installed and environment is activated, <i>main.py</i> can be run using Python3 as follows 
+
+
+    $ python3 main.py [image_name]
+
+It is important to note that we are using Python3 for the implementation purpose. Also, user can provide image name with
+its path as an optional parameter to <i>main.py</i> which will be considered as base original image and all operations 
+will be performed on that image. If parameter is not provided, all smoothing operations will be performed on this 
+[standard camera-man image](https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.camera) which is 
+similar to the one shown in paper of ICIP1.
 
 ### Authors
 Bonaventure Dossou and Chirag Vaghela
